@@ -1,0 +1,24 @@
+{
+  "name": "carlcs/craft-helpers",
+  "description": "Helpers plugin for Craft CMS",
+  "type": "craft-plugin",
+  "repositories": [
+    {
+      "type": "pear",
+      "url": "https://pear2.php.net"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/carlcs/truncateHTML"
+    }
+  ],
+  "require": {
+    "composer/installers": "~1.0",
+    "php": ">=5.4.0",
+    "pear/numbers_words": "v0.18.1",
+    "urodoz/truncate-html": "dev-getgravfixes"
+  },
+  "config": {
+    "preferred-install": "dist"
+  }
+}

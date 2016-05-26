@@ -1,0 +1,278 @@
+[
+    {
+        "name": "composer/installers",
+        "version": "v1.0.25",
+        "version_normalized": "1.0.25.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/composer/installers.git",
+            "reference": "36e5b5843203d7f1cf6ffb0305a97e014387bd8e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/composer/installers/zipball/36e5b5843203d7f1cf6ffb0305a97e014387bd8e",
+            "reference": "36e5b5843203d7f1cf6ffb0305a97e014387bd8e",
+            "shasum": ""
+        },
+        "require": {
+            "composer-plugin-api": "^1.0"
+        },
+        "replace": {
+            "roundcube/plugin-installer": "*",
+            "shama/baton": "*"
+        },
+        "require-dev": {
+            "composer/composer": "1.0.*@dev",
+            "phpunit/phpunit": "4.1.*"
+        },
+        "time": "2016-04-13 19:46:30",
+        "type": "composer-plugin",
+        "extra": {
+            "class": "Composer\\Installers\\Plugin",
+            "branch-alias": {
+                "dev-master": "1.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Composer\\Installers\\": "src/Composer/Installers"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Kyle Robinson Young",
+                "email": "kyle@dontkry.com",
+                "homepage": "https://github.com/shama"
+            }
+        ],
+        "description": "A multi-framework Composer library installer",
+        "homepage": "https://composer.github.io/installers/",
+        "keywords": [
+            "Craft",
+            "Dolibarr",
+            "Hurad",
+            "ImageCMS",
+            "MODX Evo",
+            "Mautic",
+            "OXID",
+            "SMF",
+            "Thelia",
+            "WolfCMS",
+            "agl",
+            "aimeos",
+            "annotatecms",
+            "bitrix",
+            "cakephp",
+            "chef",
+            "codeigniter",
+            "concrete5",
+            "croogo",
+            "dokuwiki",
+            "drupal",
+            "elgg",
+            "fuelphp",
+            "grav",
+            "installer",
+            "joomla",
+            "kohana",
+            "laravel",
+            "lithium",
+            "magento",
+            "mako",
+            "mediawiki",
+            "modulework",
+            "moodle",
+            "phpbb",
+            "piwik",
+            "ppi",
+            "puppet",
+            "roundcube",
+            "shopware",
+            "silverstripe",
+            "symfony",
+            "typo3",
+            "wordpress",
+            "zend",
+            "zikula"
+        ]
+    },
+    {
+        "name": "pear/math_biginteger",
+        "version": "v1.0.3",
+        "version_normalized": "1.0.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/pear/Math_BigInteger.git",
+            "reference": "33d4357543037a458fad3e8c837a01b93104e592"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/pear/Math_BigInteger/zipball/33d4357543037a458fad3e8c837a01b93104e592",
+            "reference": "33d4357543037a458fad3e8c837a01b93104e592",
+            "shasum": ""
+        },
+        "require": {
+            "ext-pcre": "*",
+            "php": ">=4.2.0"
+        },
+        "suggest": {
+            "ext-bcmath": "Allows using the BCMath extension internally for computation. Faster than native implementation.",
+            "ext-gmp": "Allows using the GNU Multiple Precision extension internally for computation. If you are doing a lot of computation this is the recommended extension."
+        },
+        "time": "2016-04-12 05:46:52",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Math_": "./"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jim Wigginton",
+                "email": "terrafrost@php.net"
+            }
+        ],
+        "description": "Pure-PHP arbitrary precission integer arithmetic library. If GMP or BCMath are available they are used.",
+        "homepage": "https://github.com/pear/Math_BigInteger",
+        "keywords": [
+            "arbitrary",
+            "bcmath",
+            "gmp",
+            "integer",
+            "precision"
+        ]
+    },
+    {
+        "name": "pear/numbers_words",
+        "version": "v0.18.1",
+        "version_normalized": "0.18.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/pear/Numbers_Words.git",
+            "reference": "a1bebceb0f8d4c97059e4fe0aaa35437ad409bc2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/pear/Numbers_Words/zipball/a1bebceb0f8d4c97059e4fe0aaa35437ad409bc2",
+            "reference": "a1bebceb0f8d4c97059e4fe0aaa35437ad409bc2",
+            "shasum": ""
+        },
+        "require": {
+            "pear/math_biginteger": ">=1.0.2",
+            "php": ">=5.3.2"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "*"
+        },
+        "time": "2014-11-03 10:38:38",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Numbers": "./"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "include-path": [
+            "./"
+        ],
+        "license": [
+            "PHP-3.01"
+        ],
+        "authors": [
+            {
+                "name": "Kouber Saparev",
+                "email": "kouber@php.net"
+            },
+            {
+                "name": "Igor Feghali",
+                "email": "ifeghali@php.net"
+            },
+            {
+                "name": "Xavier Noguer",
+                "email": "xnoguer.php@gmail.com"
+            },
+            {
+                "name": "Hadar Porat",
+                "email": "hpman28@gmail.com"
+            },
+            {
+                "name": "Piotr Klaban",
+                "email": "makler@man.torun.pl"
+            },
+            {
+                "name": "Marcelo Subtil Marcal",
+                "email": "msmarcal@php.net"
+            }
+        ],
+        "description": "Allows converting numbers written in arabic digits to words in several languages. You can convert an integer between -infinity and infinity.",
+        "homepage": "https://github.com/pear/Numbers_Words",
+        "keywords": [
+            "numbers"
+        ]
+    },
+    {
+        "name": "urodoz/truncate-html",
+        "version": "dev-getgravfixes",
+        "version_normalized": "dev-getgravfixes",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/carlcs/truncateHTML.git",
+            "reference": "e847a9ffa19ba92a933bf8a952f938e6f670f221"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/carlcs/truncateHTML/zipball/e847a9ffa19ba92a933bf8a952f938e6f670f221",
+            "reference": "e847a9ffa19ba92a933bf8a952f938e6f670f221",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4",
+            "symfony/dependency-injection": "~2.4",
+            "symfony/http-kernel": "~2.4",
+            "twig/twig": "~1"
+        },
+        "time": "2016-05-24 09:52:07",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Urodoz\\Truncate\\": "src"
+            }
+        },
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Albert Lacarta",
+                "email": "urodoz@gmail.com",
+                "homepage": "http://www.rqlogic.com"
+            }
+        ],
+        "description": "Handle truncate action on HTML strings",
+        "keywords": [
+            "content",
+            "html",
+            "shorten",
+            "truncate",
+            "truncating"
+        ],
+        "support": {
+            "source": "https://github.com/carlcs/truncateHTML/tree/getgravfixes"
+        }
+    }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "version": "1.1.0",
+    "downloadUrl": "https://github.com/carlcs/craft-helpers/archive/v1.1.0.zip",
+    "date": "2016-05-24T19:00:00+01:00",
+    "notes": [
+      "[Added] Added all the filters and functions from the Truncate and Numbers Convert plugins: `truncate`, `numeralSystem`, `unitPrefix`, `fractionToFloat`, `floatToFraction`.",
+      "[Added] Added the following new filters and functions: `numbersToWords`, `currencyToWords`, `randomString`, `md5` and `json_decode`",
+      "[Added] The String helpers don’t escape the returned HTML any more by default.",
+      "[Added] Added a config setting to escape HTML returned from Twig filters and functions.",
+      "[Improved] Improved the `truncate` filter by switching to use the truncateHTML library by Albert Lacarta.",
+      "[Improved] The plugin now requires PHP 5.4+."
+    ]
+  },
+  {
+    "version": "1.0",
+    "downloadUrl": "https://github.com/carlcs/craft-helpers/archive/v1.0.zip",
+    "date": "2016-03-25T22:00:00+01:00",
+    "notes": [
+      "First release"
+    ]
+  }
+]
