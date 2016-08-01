@@ -61,6 +61,17 @@ Returns the input string stripped from all punctuation.
 {# outputs "In theory it removes but not ßøü" #}
 ```
 
+#### htmlEntityDecode
+
+Returns the input string with all HTML entities converted to their applicable characters.
+
+```twig
+{% set string = 'Ein 'Anf&uuml;hrungszeichen' ist &lt;b&gt;fett&lt;/b&gt' %}
+{{ string|htmlEntityDecode }}
+
+{# outputs "Ein 'Anführungszeichen' ist <b>fett</b>" #}
+```
+
 ## Number Helpers
 
 #### numbersToWords( locale )
