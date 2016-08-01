@@ -42,6 +42,7 @@ class HelpersTwigExtension extends \Twig_Extension
             new \Twig_SimpleFilter('truncate', [craft()->helpers_string, 'truncate'], $options),
             new \Twig_SimpleFilter('stripWords', [craft()->helpers_string, 'stripWords'], $options),
             new \Twig_SimpleFilter('stripPunctuation', [craft()->helpers_string, 'stripPunctuation'], $options),
+            new \Twig_SimpleFilter('htmlEntityDecode', [craft()->helpers_string, 'htmlEntityDecode'], $options),
 
             new \Twig_SimpleFilter('numbersToWords', [craft()->helpers_number, 'numbersToWords']),
             new \Twig_SimpleFilter('currencyToWords', [craft()->helpers_number, 'currencyToWords']),

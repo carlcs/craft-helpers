@@ -71,4 +71,17 @@ class Helpers_StringService extends BaseApplicationComponent
 
         return $value;
     }
+
+    /**
+     * Returns the input string with all HTML entities converted to their
+     * applicable characters.
+     *
+     * @param string $value
+     *
+     * @return string
+     */
+    public function htmlEntityDecode($value)
+    {
+        return html_entity_decode($value);
+    }
 }
