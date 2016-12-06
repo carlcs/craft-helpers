@@ -22,6 +22,9 @@ class HelpersTwigExtension extends \Twig_Extension
     {
         return [
             new \Twig_SimpleFunction('randomString', [craft()->helpers_misc, 'randomString']),
+
+            new \Twig_SimpleFunction('setNotice', [craft()->helpers_misc, 'setNotice']),
+            new \Twig_SimpleFunction('setError', [craft()->helpers_misc, 'setError']),
         ];
     }
 

@@ -45,4 +45,28 @@ class Helpers_MiscService extends BaseApplicationComponent
     {
         return md5($value);
     }
+
+    /**
+     * Stores a notice in the user’s flash data.
+     *
+     * @param string $message
+     *
+     * @return null
+     */
+    public function setNotice($message)
+    {
+        craft()->userSession->setFlash('notice', $message);
+    }
+
+    /**
+     * Stores an error message in the user’s flash data.
+     *
+     * @param string $message
+     *
+     * @return null
+     */
+    public function setError($message)
+    {
+        craft()->userSession->setFlash('error', $message);
+    }
 }
