@@ -201,6 +201,32 @@ Decodes a JSON string.
 {# outputs "Rothaus Tannenzäpfle" #}
 ```
 
+#### setNotice( message )
+
+Stores a notice in the user’s flash data.
+
+- **`message`** (required) – The message.
+
+```twig
+{% do setNotice('My short message.') %}
+{{ craft.session.getFlash('notice') }}
+
+{# outputs "My short message." #}
+```
+
+#### setError( message )
+
+Stores an error message in the user’s flash data.
+
+- **`message`** (required) – The message.
+
+```twig
+{% do setError('Do panic!') %}
+{{ craft.session.getFlash('error') }}
+
+{# outputs "Do panic!" #}
+```
+
 ## Requirements
 
 - PHP 5.4+
