@@ -1,6 +1,9 @@
 <?php
 namespace Craft;
 
+use Twig_SimpleFunction;
+use Twig_SimpleFilter;
+
 class HelpersTwigExtension extends \Twig_Extension
 {
     /**
@@ -21,10 +24,10 @@ class HelpersTwigExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('randomString', [craft()->helpers_misc, 'randomString']),
+            new Twig_SimpleFunction('randomString', [craft()->helpers_misc, 'randomString']),
 
-            new \Twig_SimpleFunction('setNotice', [craft()->helpers_misc, 'setNotice']),
-            new \Twig_SimpleFunction('setError', [craft()->helpers_misc, 'setError']),
+            new Twig_SimpleFunction('setNotice', [craft()->helpers_misc, 'setNotice']),
+            new Twig_SimpleFunction('setError', [craft()->helpers_misc, 'setError']),
         ];
     }
 
@@ -42,22 +45,22 @@ class HelpersTwigExtension extends \Twig_Extension
         }
 
         return [
-            new \Twig_SimpleFilter('truncate', [craft()->helpers_string, 'truncate'], $options),
-            new \Twig_SimpleFilter('stripWords', [craft()->helpers_string, 'stripWords'], $options),
-            new \Twig_SimpleFilter('stripPunctuation', [craft()->helpers_string, 'stripPunctuation'], $options),
-            new \Twig_SimpleFilter('htmlEntityDecode', [craft()->helpers_string, 'htmlEntityDecode'], $options),
+            new Twig_SimpleFilter('truncate', [craft()->helpers_string, 'truncate'], $options),
+            new Twig_SimpleFilter('stripWords', [craft()->helpers_string, 'stripWords'], $options),
+            new Twig_SimpleFilter('stripPunctuation', [craft()->helpers_string, 'stripPunctuation'], $options),
+            new Twig_SimpleFilter('htmlEntityDecode', [craft()->helpers_string, 'htmlEntityDecode'], $options),
 
-            new \Twig_SimpleFilter('numbersToWords', [craft()->helpers_number, 'numbersToWords']),
-            new \Twig_SimpleFilter('currencyToWords', [craft()->helpers_number, 'currencyToWords']),
+            new Twig_SimpleFilter('numbersToWords', [craft()->helpers_number, 'numbersToWords']),
+            new Twig_SimpleFilter('currencyToWords', [craft()->helpers_number, 'currencyToWords']),
 
-            new \Twig_SimpleFilter('numeralSystem', [craft()->helpers_number, 'numeralSystem']),
-            new \Twig_SimpleFilter('unitPrefix', [craft()->helpers_number, 'unitPrefix']),
-            new \Twig_SimpleFilter('fractionToFloat', [craft()->helpers_number, 'fractionToFloat']),
-            new \Twig_SimpleFilter('floatToFraction', [craft()->helpers_number, 'floatToFraction']),
+            new Twig_SimpleFilter('numeralSystem', [craft()->helpers_number, 'numeralSystem']),
+            new Twig_SimpleFilter('unitPrefix', [craft()->helpers_number, 'unitPrefix']),
+            new Twig_SimpleFilter('fractionToFloat', [craft()->helpers_number, 'fractionToFloat']),
+            new Twig_SimpleFilter('floatToFraction', [craft()->helpers_number, 'floatToFraction']),
 
-            new \Twig_SimpleFilter('jsonDecode', [craft()->helpers_misc, 'jsonDecode']),
-            new \Twig_SimpleFilter('json_decode', [craft()->helpers_misc, 'jsonDecode']),
-            new \Twig_SimpleFilter('md5', [craft()->helpers_misc, 'md5'], $options),
+            new Twig_SimpleFilter('jsonDecode', [craft()->helpers_misc, 'jsonDecode']),
+            new Twig_SimpleFilter('json_decode', [craft()->helpers_misc, 'jsonDecode']),
+            new Twig_SimpleFilter('md5', [craft()->helpers_misc, 'md5'], $options),
         ];
     }
 }
