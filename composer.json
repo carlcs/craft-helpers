@@ -16,7 +16,9 @@
     "composer/installers": "~1.0",
     "php": ">=5.4.0",
     "pear/numbers_words": "v0.18.1",
-    "urodoz/truncate-html": "dev-getgravfixes"
+    "urodoz/truncate-html": "dev-getgravfixes",
+    "symfony/yaml": "^3.3",
+    "league/csv": "^8.0"
   },
   "config": {
     "preferred-install": "dist"

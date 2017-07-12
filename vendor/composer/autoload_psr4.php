@@ -7,5 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Urodoz\\Truncate\\' => array($vendorDir . '/urodoz/truncate-html/src'),
+    'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
+    'League\\Csv\\' => array($vendorDir . '/league/csv/src'),
     'Composer\\Installers\\' => array($vendorDir . '/composer/installers/src/Composer/Installers'),
 );
