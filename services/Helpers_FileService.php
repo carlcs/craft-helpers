@@ -15,7 +15,7 @@ class Helpers_FileService extends BaseApplicationComponent
      *
      * @param string $path
      *
-     * @return array|null
+     * @return mixed|null
      */
     public function readPhp($path)
     {
@@ -30,7 +30,7 @@ class Helpers_FileService extends BaseApplicationComponent
      *
      * @param string $path
      *
-     * @return array|null
+     * @return string|null
      */
     public function readText($path)
     {
@@ -50,7 +50,7 @@ class Helpers_FileService extends BaseApplicationComponent
      *
      * @param string $path
      *
-     * @return array|null
+     * @return mixed|null
      */
     public function readJson($path)
     {
