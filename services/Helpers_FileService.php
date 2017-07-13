@@ -23,7 +23,7 @@ class Helpers_FileService extends BaseApplicationComponent
         $file = @file_get_contents($filePath);
 
         if ($file === false) {
-            HelpersPlugin::log('Couldn’t read file: '.$path, LogLevel::Error);
+            HelpersPlugin::log('Couldn’t read file: '.$filePath, LogLevel::Error);
             return null;
         }
 
@@ -43,12 +43,12 @@ class Helpers_FileService extends BaseApplicationComponent
         $file = @include $filePath;
 
         if ($file === false) {
-            HelpersPlugin::log('Couldn’t read file: '.$path, LogLevel::Error);
+            HelpersPlugin::log('Couldn’t read file: '.$filePath, LogLevel::Error);
             return null;
         }
 
         if ($file === 1) {
-            HelpersPlugin::log('Return statement missing in PHP file: '.$path, LogLevel::Error);
+            HelpersPlugin::log('Return statement missing in PHP file: '.$filePath, LogLevel::Error);
         }
 
         return $file;
@@ -67,14 +67,14 @@ class Helpers_FileService extends BaseApplicationComponent
         $file = @file_get_contents($filePath);
 
         if ($file === false) {
-            HelpersPlugin::log('Couldn’t read file: '.$path, LogLevel::Error);
+            HelpersPlugin::log('Couldn’t read file: '.$filePath, LogLevel::Error);
             return null;
         }
 
         $data = @json_decode($file, true);
 
         if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
-            HelpersPlugin::log('Couldn’t read file: '.$path.'. '.json_last_error_msg(), LogLevel::Error);
+            HelpersPlugin::log('Couldn’t read file: '.$filePath.'. '.json_last_error_msg(), LogLevel::Error);
             return null;
         }
 
@@ -94,14 +94,14 @@ class Helpers_FileService extends BaseApplicationComponent
         $file = @file_get_contents($filePath);
 
         if ($file === false) {
-            HelpersPlugin::log('Couldn’t read file: '.$path, LogLevel::Error);
+            HelpersPlugin::log('Couldn’t read file: '.$filePath, LogLevel::Error);
             return null;
         }
 
         try {
             $data = Yaml::parse($file);
         } catch (ParseException $e) {
-            HelpersPlugin::log('Couldn’t read file: '.$path.'. '.$e->getMessage(), LogLevel::Error);
+            HelpersPlugin::log('Couldn’t read file: '.$filePath.'. '.$e->getMessage(), LogLevel::Error);
             return null;
         }
 
@@ -135,7 +135,7 @@ class Helpers_FileService extends BaseApplicationComponent
 
             $data = iterator_to_array($results);
         } catch (\Exception $e) {
-            HelpersPlugin::log('Couldn’t read file: '.$path.'. '.$e->getMessage(), LogLevel::Error);
+            HelpersPlugin::log('Couldn’t read file: '.$filePath.'. '.$e->getMessage(), LogLevel::Error);
             return null;
         }
 
