@@ -11,7 +11,7 @@ class Helpers_FileService extends BaseApplicationComponent
     // =========================================================================
 
     /**
-     * Reads a file contents into a string.
+     * Reads a file’s contents into a string.
      *
      * @param string $path
      *
@@ -113,10 +113,11 @@ class Helpers_FileService extends BaseApplicationComponent
      * Reads a CSV file, parses and converts its contents.
      *
      * @param string $path
+     * @param bool $associative
      *
      * @return array|null
      */
-    public function readCsv($path)
+    public function readCsv($path, $associative = true)
     {
         if (!ini_get('auto_detect_line_endings')) {
             @ini_set('auto_detect_line_endings', true);
@@ -130,11 +131,16 @@ class Helpers_FileService extends BaseApplicationComponent
             $delimiters = $reader->fetchDelimitersOccurrence([',', ';', '|'], 10);
             $reader->setDelimiter(array_keys($delimiters)[0]);
 
-            $results = $reader->fetchAssoc(0, function($row) {
-                return array_map('trim', $row);
-            });
+            if ($associative) {
+                $results = $reader->fetchAssoc(0, function($row) {
+                    return array_map('trim', $row);
+                });
 
-            $data = iterator_to_array($results);
+                $data = iterator_to_array($results);
+            } else {
+                $data = $reader->fetchAll();
+            }
+
         } catch (\Exception $e) {
             HelpersPlugin::log('Couldn’t read file: '.$filePath.'. '.$e->getMessage(), LogLevel::Error);
             return null;
