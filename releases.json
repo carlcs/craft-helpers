@@ -1,5 +1,14 @@
 [
   {
+    "version": "1.4.0",
+    "downloadUrl": "https://github.com/carlcs/craft-helpers/archive/v1.4.0.zip",
+    "date": "2017-07-13T17:00:00+01:00",
+    "notes": [
+      "[Added] Added `readJson`, `readYaml`, `readCsv` and `readPhp` functions to read and convert file contents.",
+      "[Added] Added a `readText` function (with alias `inline`) to read an entire file into a string."
+    ]
+  },
+  {
     "version": "1.3.0",
     "downloadUrl": "https://github.com/carlcs/craft-helpers/archive/v1.3.0.zip",
     "date": "2016-12-07T13:00:00+01:00",
