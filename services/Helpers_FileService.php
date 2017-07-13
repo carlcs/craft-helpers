@@ -49,6 +49,7 @@ class Helpers_FileService extends BaseApplicationComponent
 
         if ($file === 1) {
             HelpersPlugin::log('Return statement missing in PHP file: '.$filePath, LogLevel::Error);
+            return null;
         }
 
         return $file;
