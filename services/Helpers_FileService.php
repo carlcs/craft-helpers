@@ -11,21 +11,6 @@ class Helpers_FileService extends BaseApplicationComponent
     // =========================================================================
 
     /**
-     * Executes a PHP file’s return statement and returns the value.
-     *
-     * @param string $path
-     *
-     * @return mixed|null
-     */
-    public function readPhp($path)
-    {
-        $filePath = $this->getFilePath($path);
-        $data = require $filePath;
-
-        return $data;
-    }
-
-    /**
      * Reads a file contents into a string.
      *
      * @param string $path
@@ -43,6 +28,21 @@ class Helpers_FileService extends BaseApplicationComponent
         }
 
         return $file;
+    }
+
+    /**
+     * Executes a PHP file’s return statement and returns the value.
+     *
+     * @param string $path
+     *
+     * @return mixed|null
+     */
+    public function readPhp($path)
+    {
+        $filePath = $this->getFilePath($path);
+        $data = require $filePath;
+
+        return $data;
     }
 
     /**

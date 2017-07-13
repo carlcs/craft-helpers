@@ -23,9 +23,10 @@ class HelpersTwigExtension extends \Twig_Extension
      */
     public function getFunctions()
     {
-        $functions = [
-            new Twig_SimpleFunction('readPhp', [craft()->helpers_file, 'readPhp']),
+        return [
+            new Twig_SimpleFunction('inline', [craft()->helpers_file, 'readText'], ['is_safe' => ['all']]),
             new Twig_SimpleFunction('readText', [craft()->helpers_file, 'readText'], ['is_safe' => ['all']]),
+            new Twig_SimpleFunction('readPhp', [craft()->helpers_file, 'readPhp']),
             new Twig_SimpleFunction('readJson', [craft()->helpers_file, 'readJson']),
             new Twig_SimpleFunction('readYaml', [craft()->helpers_file, 'readYaml']),
             new Twig_SimpleFunction('readCsv', [craft()->helpers_file, 'readCsv']),
@@ -35,12 +36,6 @@ class HelpersTwigExtension extends \Twig_Extension
             new Twig_SimpleFunction('setNotice', [craft()->helpers_misc, 'setNotice']),
             new Twig_SimpleFunction('setError', [craft()->helpers_misc, 'setError']),
         ];
-
-        if (craft()->config->get('overrideSourceFunction', 'helpers')) {
-            $functions[] = new Twig_SimpleFunction('source', [craft()->helpers_file, 'readText'], ['is_safe' => ['all']]);
-        }
-
-        return $functions;
     }
 
     /**
