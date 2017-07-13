@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'readerBasePath' => CRAFT_CONFIG_PATH.'../data/',
     'overrideSourceFunction' => false,
+    'basePath' => getenv('BASE_PATH') ?: $_SERVER['DOCUMENT_ROOT'],
 ];

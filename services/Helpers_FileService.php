@@ -149,7 +149,7 @@ class Helpers_FileService extends BaseApplicationComponent
             return $path;
         }
 
-        $basePath = craft()->config->get('readerBasePath', 'helpers');
+        $basePath = craft()->config->get('basePath', 'helpers');
 
         return rtrim($basePath, '/').'/'.$path;
     }
