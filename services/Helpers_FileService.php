@@ -142,7 +142,7 @@ class Helpers_FileService extends BaseApplicationComponent
      */
     protected function getFilePath($path)
     {
-        if ($this->isUrl($path) || $this->isAbsolutePath($path)) {
+        if ($this->isAbsolutePath($path)) {
             return $path;
         }
 
@@ -156,20 +156,12 @@ class Helpers_FileService extends BaseApplicationComponent
      *
      * @return bool
      */
-    protected function isUrl($path)
-    {
-        $parts = parse_url($path);
-
-        return isset($parts['host']);
-    }
-
-    /**
-     * @param string $path
-     *
-     * @return bool
-     */
     protected function isAbsolutePath($path)
     {
-        return substr($path, 0, 1) === DIRECTORY_SEPARATOR;
+        return strspn($path, '/\\', 0, 1)
+            || (strlen($path) > 3 && ctype_alpha($path[0])
+                && substr($path, 1, 1) === ':'
+                && strspn($path, '/\\', 2, 1))
+            || null !== parse_url($path, PHP_URL_SCHEME);
     }
 }
