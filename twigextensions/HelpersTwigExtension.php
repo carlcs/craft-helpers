@@ -25,7 +25,7 @@ class HelpersTwigExtension extends \Twig_Extension
     {
         $functions = [
             new Twig_SimpleFunction('readPhp', [craft()->helpers_file, 'readPhp']),
-            new Twig_SimpleFunction('readText', [craft()->helpers_file, 'readText']),
+            new Twig_SimpleFunction('readText', [craft()->helpers_file, 'readText'], ['is_safe' => ['all']]),
             new Twig_SimpleFunction('readJson', [craft()->helpers_file, 'readJson']),
             new Twig_SimpleFunction('readYaml', [craft()->helpers_file, 'readYaml']),
             new Twig_SimpleFunction('readCsv', [craft()->helpers_file, 'readCsv']),
@@ -37,7 +37,7 @@ class HelpersTwigExtension extends \Twig_Extension
         ];
 
         if (craft()->config->get('overrideSourceFunction', 'helpers')) {
-            $functions[] = new Twig_SimpleFunction('source', [craft()->helpers_file, 'readText']);
+            $functions[] = new Twig_SimpleFunction('source', [craft()->helpers_file, 'readText'], ['is_safe' => ['all']]);
         }
 
         return $functions;
@@ -50,17 +50,11 @@ class HelpersTwigExtension extends \Twig_Extension
      */
     public function getFilters()
     {
-        $options = [];
-
-        if (!craft()->config->get('escapeHtml', 'helpers')) {
-            $options['is_safe'] = ['html'];
-        }
-
         return [
-            new Twig_SimpleFilter('truncate', [craft()->helpers_string, 'truncate'], $options),
-            new Twig_SimpleFilter('stripWords', [craft()->helpers_string, 'stripWords'], $options),
-            new Twig_SimpleFilter('stripPunctuation', [craft()->helpers_string, 'stripPunctuation'], $options),
-            new Twig_SimpleFilter('htmlEntityDecode', [craft()->helpers_string, 'htmlEntityDecode'], $options),
+            new Twig_SimpleFilter('truncate', [craft()->helpers_string, 'truncate'], ['is_safe' => ['html']]),
+            new Twig_SimpleFilter('stripWords', [craft()->helpers_string, 'stripWords'], ['is_safe' => ['html']]),
+            new Twig_SimpleFilter('stripPunctuation', [craft()->helpers_string, 'stripPunctuation'], ['is_safe' => ['html']]),
+            new Twig_SimpleFilter('htmlEntityDecode', [craft()->helpers_string, 'htmlEntityDecode'], ['is_safe' => ['html']]),
 
             new Twig_SimpleFilter('numbersToWords', [craft()->helpers_number, 'numbersToWords']),
             new Twig_SimpleFilter('currencyToWords', [craft()->helpers_number, 'currencyToWords']),
@@ -72,7 +66,7 @@ class HelpersTwigExtension extends \Twig_Extension
 
             new Twig_SimpleFilter('jsonDecode', [craft()->helpers_misc, 'jsonDecode']),
             new Twig_SimpleFilter('json_decode', [craft()->helpers_misc, 'jsonDecode']),
-            new Twig_SimpleFilter('md5', [craft()->helpers_misc, 'md5'], $options),
+            new Twig_SimpleFilter('md5', [craft()->helpers_misc, 'md5']),
         ];
     }
 }
