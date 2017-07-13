@@ -12,6 +12,91 @@ $ composer require carlcs/craft-helpers
 
   [1]: https://github.com/carlcs/craft-helpers/releases/latest
 
+## File Helpers
+
+The plugin provides functions, which allow to read and convert JSON, YAML, CSV and PHP files. Using the `readText` or `inline` function you can read an entire file into a string.
+
+All functions take a `path` argument, this can be either a relative or absolute path, or full URL to the file. A relative path is interpreted as relative to the web root by default, but this can be changed with the `basePath` config setting.
+
+Here are some ideas for what you can do with reading files:
+
+- read SVG files or “above-the-fold” CSS files and inline them into your templates
+- read documents written in markdown that you version control in Git
+- read mock data from JSON or YAML files for prototyping
+- read Element API endpoints without Ajax requests
+- read mapping tables for all sorts of things (keywords to element IDs, keywords to common sets of Atomic CSS classes, …)
+
+#### readText( path )
+
+Reads a file’s contents into a string. The plugin also provides an alias for this function with `inline( path )`.
+
+- **`path`** (required) – The path to the file to read.
+
+```twig
+{{ readText('data/notes.md')|md }}
+```
+
+```twig
+{{ inline('assets/svg/logo.svg') }}
+```
+
+```twig
+{% set data = inline(url('api/elements.json')) %}
+<vue-component :data="{{ data }}"></vue-component>
+```
+
+#### readPhp( path )
+
+Executes a PHP file’s return statement and returns the value.
+
+- **`path`** (required) – The path to the file to read.
+
+```twig
+{% for element in readPhp('data/elements.php') %}
+    {{ element.getUrl() }}
+{% endfor %}
+```
+
+#### readJson( path )
+
+Reads a JSON file, parses and converts its contents.
+
+- **`path`** (required) – The path to the file to read.
+
+```twig
+{% for article in readJson('https://example.com/api/news') %}
+    {{ article.body }}
+{% endfor %}
+```
+
+#### readYaml( path )
+
+Reads a YAML file, parses and converts its contents.
+
+- **`path`** (required) – The path to the file to read.
+
+```twig
+{% set c = readYaml('tachyons/base.yaml') %}
+<img class="{{ c.img.avatar }}" src="http://tachyons.io/img/logo.jpg" alt="avatar">
+
+{# outputs "br-100 pa1 ba b--black-10 h3 w3" #}
+```
+
+#### readCsv( path )
+
+Reads a CSV file, parses and converts its contents.
+
+- **`path`** (required) – The path to the file to read.
+- **`associative`** (default `true`) – Whether an associative array should be returned for each row. The keys are provided from the first CSV row.
+
+```twig
+{% for customer in readCsv('data/customers.csv') %}
+    {{ customer['First Name'] }}
+{% endfor %}
+
+{# outputs "Paul Clara Max Thomas Simone" #}
+```
+
 ## String Helpers
 
 #### truncate( length, preserve, separator )
@@ -226,6 +311,22 @@ Stores an error message in the user’s flash data.
 
 {# outputs "Do panic!" #}
 ```
+
+## Settings
+
+You can override plugin defaults with a helpers.php config file, which you need to create in your craft/config/ folder.
+
+```php
+<?php
+
+return [
+    'basePath' => getenv('BASE_PATH') ?: $_SERVER['DOCUMENT_ROOT'],
+];
+```
+
+#### basePath
+
+The `basePath` is used by the `read` and `inline` functions. The default setting uses the value of your `BASE_PATH` environment variable if you have that set, otherwise falls back to the document root. You can override it to something like, for example, `CRAFT_CONFIG_PATH.'data/'`.
 
 ## Requirements
 
