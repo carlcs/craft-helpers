@@ -40,9 +40,14 @@ class Helpers_FileService extends BaseApplicationComponent
     public function readPhp($path)
     {
         $filePath = $this->getFilePath($path);
-        $data = require $filePath;
+        $file = @include $filePath;
 
-        return $data;
+        if ($file === false) {
+            HelpersPlugin::log('Couldn’t read file: '.$path, LogLevel::Error);
+            return null;
+        }
+
+        return $file;
     }
 
     /**
