@@ -326,7 +326,7 @@ return [
 
 #### basePath
 
-The `basePath` is used by the `read` and `inline` functions. The default setting uses the value of your `BASE_PATH` environment variable if you have that set, otherwise falls back to the document root. You can override it to something like, for example, `CRAFT_CONFIG_PATH.'data/'`.
+The `basePath` is used by the `inline` and file reading functions. The default setting uses the value of your `BASE_PATH` environment variable if you have that set, otherwise falls back your the web root. You can override it with something like, for example `CRAFT_CONFIG_PATH.'data/'`.
 
 ## Requirements
 
