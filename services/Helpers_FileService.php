@@ -7,40 +7,8 @@ use Symfony\Component\Yaml\Exception\ParseException;
 
 class Helpers_FileService extends BaseApplicationComponent
 {
-    // Static
-    // =========================================================================
-
-    /**
-     * @var array
-     */
-    private static $readerMapping = [
-        'readPhp' => ['php'],
-        'readText' => ['txt', 'md'],
-        'readJson' => ['json'],
-        'readYaml' => ['yaml', 'yml'],
-        'readCsv' => ['csv'],
-    ];
-
     // Public Methods
     // =========================================================================
-
-    /**
-     * Reads a file, parses its content and converts it to an array.
-     *
-     * @param string $path
-     *
-     * @return array|null
-     */
-    public function read($path)
-    {
-        $method = $this->getReaderMethod($path);
-
-        if (!$method) {
-            return null;
-        }
-
-        return $this->{$method}($path);
-    }
 
     /**
      * Reads a PHP file, parses its content and converts it to an array.
@@ -203,32 +171,5 @@ class Helpers_FileService extends BaseApplicationComponent
     protected function isAbsolutePath($path)
     {
         return substr($path, 0, 1) === DIRECTORY_SEPARATOR;
-    }
-
-    /**
-     * Returns the callable associated with a filename.
-     *
-     * @param string $path
-     *
-     * @return string|null
-     */
-    protected function getReaderMethod($path)
-    {
-        $filename = IOHelper::getFileName($path);
-
-        $extension = IOHelper::getExtension($filename);
-        $extension = StringHelper::toLowerCase($extension);
-
-        if (!$extension) {
-            return null;
-        }
-
-        foreach (static::$readerMapping as $method => $extensions) {
-            if (in_array($extension, $extensions)) {
-                return $method;
-            }
-        }
-
-        return null;
     }
 }

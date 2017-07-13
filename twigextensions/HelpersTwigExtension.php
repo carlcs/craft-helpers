@@ -24,7 +24,7 @@ class HelpersTwigExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new Twig_SimpleFunction('read', [craft()->helpers_file, 'read']),
+            new Twig_SimpleFunction('read', [craft()->helpers_file, 'readText']),
             new Twig_SimpleFunction('readPhp', [craft()->helpers_file, 'readPhp']),
             new Twig_SimpleFunction('readText', [craft()->helpers_file, 'readText']),
             new Twig_SimpleFunction('readJson', [craft()->helpers_file, 'readJson']),
