@@ -11,51 +11,6 @@ class Helpers_FileService extends BaseApplicationComponent
     // =========================================================================
 
     /**
-     * Reads a file’s contents into a string.
-     *
-     * @param string $path
-     *
-     * @return string|null
-     */
-    public function readText($path)
-    {
-        $filePath = $this->getFilePath($path);
-        $file = @file_get_contents($filePath);
-
-        if ($file === false) {
-            HelpersPlugin::log('Couldn’t read file: '.$filePath, LogLevel::Error);
-            return null;
-        }
-
-        return $file;
-    }
-
-    /**
-     * Executes a PHP file’s return statement and returns the value.
-     *
-     * @param string $path
-     *
-     * @return mixed|null
-     */
-    public function readPhp($path)
-    {
-        $filePath = $this->getFilePath($path);
-        $file = @include $filePath;
-
-        if ($file === false) {
-            HelpersPlugin::log('Couldn’t read file: '.$filePath, LogLevel::Error);
-            return null;
-        }
-
-        if ($file === 1) {
-            HelpersPlugin::log('Return statement missing in PHP file: '.$filePath, LogLevel::Error);
-            return null;
-        }
-
-        return $file;
-    }
-
-    /**
      * Reads a JSON file, parses and converts its contents.
      *
      * @param string $path
@@ -147,6 +102,51 @@ class Helpers_FileService extends BaseApplicationComponent
         }
 
         return $data;
+    }
+
+    /**
+     * Executes a PHP file’s return statement and returns the value.
+     *
+     * @param string $path
+     *
+     * @return mixed|null
+     */
+    public function readPhp($path)
+    {
+        $filePath = $this->getFilePath($path);
+        $file = @include $filePath;
+
+        if ($file === false) {
+            HelpersPlugin::log('Couldn’t read file: '.$filePath, LogLevel::Error);
+            return null;
+        }
+
+        if ($file === 1) {
+            HelpersPlugin::log('Return statement missing in PHP file: '.$filePath, LogLevel::Error);
+            return null;
+        }
+
+        return $file;
+    }
+
+    /**
+     * Reads a file’s contents into a string.
+     *
+     * @param string $path
+     *
+     * @return string|null
+     */
+    public function readText($path)
+    {
+        $filePath = $this->getFilePath($path);
+        $file = @file_get_contents($filePath);
+
+        if ($file === false) {
+            HelpersPlugin::log('Couldn’t read file: '.$filePath, LogLevel::Error);
+            return null;
+        }
+
+        return $file;
     }
 
     // Protected Methods
