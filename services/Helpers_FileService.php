@@ -66,6 +66,7 @@ class Helpers_FileService extends BaseApplicationComponent
 
         if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
             HelpersPlugin::log('Couldn’t read file: '.$path.'. '.json_last_error_msg(), LogLevel::Error);
+            return null;
         }
 
         return $data;
@@ -76,7 +77,7 @@ class Helpers_FileService extends BaseApplicationComponent
      *
      * @param string $path
      *
-     * @return array|null
+     * @return mixed|null
      */
     public function readYaml($path)
     {
@@ -92,6 +93,7 @@ class Helpers_FileService extends BaseApplicationComponent
             $data = Yaml::parse($file);
         } catch (ParseException $e) {
             HelpersPlugin::log('Couldn’t read file: '.$path.'. '.$e->getMessage(), LogLevel::Error);
+            return null;
         }
 
         return $data;
@@ -125,6 +127,7 @@ class Helpers_FileService extends BaseApplicationComponent
             $data = iterator_to_array($results);
         } catch (\Exception $e) {
             HelpersPlugin::log('Couldn’t read file: '.$path.'. '.$e->getMessage(), LogLevel::Error);
+            return null;
         }
 
         return $data;
