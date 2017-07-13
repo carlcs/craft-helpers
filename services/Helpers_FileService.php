@@ -15,6 +15,7 @@ class Helpers_FileService extends BaseApplicationComponent
      */
     private static $readerMapping = [
         'readPhp' => ['php'],
+        'readText' => ['txt', 'md'],
         'readJson' => ['json'],
         'readYaml' => ['yaml', 'yml'],
         'readCsv' => ['csv'],
@@ -56,6 +57,27 @@ class Helpers_FileService extends BaseApplicationComponent
         $data = require $filePath;
 
         return $this->getValueByKey($property, $data);
+    }
+
+    /**
+     * Reads a PHP file, parses its content and converts it to an array.
+     *
+     * @param string $path
+     * @param string $property
+     *
+     * @return array|null
+     */
+    public function readText($path, $property = null)
+    {
+        $filePath = $this->getFilePath($path);
+        $file = @file_get_contents($filePath);
+
+        if ($file === false) {
+            HelpersPlugin::log('Couldn’t read file: '.$path, LogLevel::Error);
+            return null;
+        }
+
+        return $file;
     }
 
     /**
