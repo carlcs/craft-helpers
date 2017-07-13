@@ -28,11 +28,10 @@ class Helpers_FileService extends BaseApplicationComponent
      * Reads a file, parses its content and converts it to an array.
      *
      * @param string $path
-     * @param string $property
      *
      * @return array|null
      */
-    public function read($path, $property = null)
+    public function read($path)
     {
         $method = $this->getReaderMethod($path);
 
@@ -40,34 +39,32 @@ class Helpers_FileService extends BaseApplicationComponent
             return null;
         }
 
-        return $this->{$method}($path, $property);
+        return $this->{$method}($path);
     }
 
     /**
      * Reads a PHP file, parses its content and converts it to an array.
      *
      * @param string $path
-     * @param string $property
      *
      * @return array|null
      */
-    public function readPhp($path, $property = null)
+    public function readPhp($path)
     {
         $filePath = $this->getFilePath($path);
         $data = require $filePath;
 
-        return $this->getValueByKey($property, $data);
+        return $data;
     }
 
     /**
      * Reads a PHP file, parses its content and converts it to an array.
      *
      * @param string $path
-     * @param string $property
      *
      * @return array|null
      */
-    public function readText($path, $property = null)
+    public function readText($path)
     {
         $filePath = $this->getFilePath($path);
         $file = @file_get_contents($filePath);
@@ -84,11 +81,10 @@ class Helpers_FileService extends BaseApplicationComponent
      * Reads a JSON file, parses its content and converts it to an array.
      *
      * @param string $path
-     * @param string $property
      *
      * @return array|null
      */
-    public function readJson($path, $property = null)
+    public function readJson($path)
     {
         $filePath = $this->getFilePath($path);
         $file = @file_get_contents($filePath);
@@ -104,18 +100,17 @@ class Helpers_FileService extends BaseApplicationComponent
             HelpersPlugin::log('Couldn’t read file: '.$path.'. '.json_last_error_msg(), LogLevel::Error);
         }
 
-        return $this->getValueByKey($property, $data);
+        return $data;
     }
 
     /**
      * Reads a YAML file, parses its content and converts it to an array.
      *
      * @param string $path
-     * @param string $property
      *
      * @return array|null
      */
-    public function readYaml($path, $property = null)
+    public function readYaml($path)
     {
         $filePath = $this->getFilePath($path);
         $file = @file_get_contents($filePath);
@@ -131,18 +126,17 @@ class Helpers_FileService extends BaseApplicationComponent
             HelpersPlugin::log('Couldn’t read file: '.$path.'. '.$e->getMessage(), LogLevel::Error);
         }
 
-        return $this->getValueByKey($property, $data);
+        return $data;
     }
 
     /**
      * Reads a CSV file, parses its content and converts it to an array.
      *
      * @param string $path
-     * @param string $property
      *
      * @return array|null
      */
-    public function readCsv($path, $property = null)
+    public function readCsv($path)
     {
         if (!ini_get('auto_detect_line_endings')) {
             @ini_set('auto_detect_line_endings', true);
@@ -165,7 +159,7 @@ class Helpers_FileService extends BaseApplicationComponent
             HelpersPlugin::log('Couldn’t read file: '.$path.'. '.$e->getMessage(), LogLevel::Error);
         }
 
-        return $this->getValueByKey($property, $data);
+        return $data;
     }
 
     // Protected Methods
@@ -236,36 +230,5 @@ class Helpers_FileService extends BaseApplicationComponent
         }
 
         return null;
-    }
-
-    /**
-     * Traverse an array using dot notation.
-     * https://selv.in/blog/traversing-arrays-using-dot-notation
-     *
-     * @param string $property
-     * @param array $data
-     *
-     * @return array|string|null
-     */
-    protected function getValueByKey($property, $data)
-    {
-        if (!is_array($data) || !is_string($property) || empty($property)) {
-            return $data;
-        }
-
-        if (strpos($property, '.') !== false) {
-            foreach (explode('.', $property) as $key) {
-                if (!array_key_exists($key, $data)) {
-                    return null;
-                }
-
-                // Continue traversing the array.
-                $data = $data[$key];
-            }
-
-            return $data;
-        }
-
-        return array_key_exists($property, $data) ? $data[$property] : null;
     }
 }
