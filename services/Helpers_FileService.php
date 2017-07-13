@@ -11,7 +11,7 @@ class Helpers_FileService extends BaseApplicationComponent
     // =========================================================================
 
     /**
-     * Reads a PHP file, parses its content and converts it to an array.
+     * Executes a PHP file’s return statement and returns the value.
      *
      * @param string $path
      *
@@ -26,7 +26,7 @@ class Helpers_FileService extends BaseApplicationComponent
     }
 
     /**
-     * Reads a PHP file, parses its content and converts it to an array.
+     * Reads a file contents into a string.
      *
      * @param string $path
      *
@@ -46,7 +46,7 @@ class Helpers_FileService extends BaseApplicationComponent
     }
 
     /**
-     * Reads a JSON file, parses its content and converts it to an array.
+     * Reads a JSON file, parses and converts its contents.
      *
      * @param string $path
      *
@@ -72,7 +72,7 @@ class Helpers_FileService extends BaseApplicationComponent
     }
 
     /**
-     * Reads a YAML file, parses its content and converts it to an array.
+     * Reads a YAML file, parses and converts its contents.
      *
      * @param string $path
      *
@@ -98,7 +98,7 @@ class Helpers_FileService extends BaseApplicationComponent
     }
 
     /**
-     * Reads a CSV file, parses its content and converts it to an array.
+     * Reads a CSV file, parses and converts its contents.
      *
      * @param string $path
      *
@@ -134,7 +134,7 @@ class Helpers_FileService extends BaseApplicationComponent
     // =========================================================================
 
     /**
-     * Returns a provided relative path appended to the base path.
+     * Resolves relative paths corresponding to the configuration.
      *
      * @param string $path
      *
