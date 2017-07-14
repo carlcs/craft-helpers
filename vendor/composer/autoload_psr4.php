@@ -6,8 +6,10 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Urodoz\\Truncate\\' => array($vendorDir . '/urodoz/truncate-html/src'),
+    'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
+    'Stringy\\' => array($vendorDir . '/danielstjules/stringy/src'),
+    'NumberToWords\\' => array($vendorDir . '/kwn/number-to-words/src'),
     'League\\Csv\\' => array($vendorDir . '/league/csv/src'),
     'Composer\\Installers\\' => array($vendorDir . '/composer/installers/src/Composer/Installers'),
 );

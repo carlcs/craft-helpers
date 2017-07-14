@@ -4,16 +4,23 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit82f603e69ebec3ca148eb97302455b46
+class ComposerStaticInitbf1ada629ee0e1866e3a86bc30e98b89
 {
+    public static $files = array (
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '65fec9ebcfbb3cbb4fd0d519687aea01' => __DIR__ . '/..' . '/danielstjules/stringy/src/Create.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
-        'U' => 
-        array (
-            'Urodoz\\Truncate\\' => 16,
-        ),
         'S' => 
         array (
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\Yaml\\' => 23,
+            'Stringy\\' => 8,
+        ),
+        'N' => 
+        array (
+            'NumberToWords\\' => 14,
         ),
         'L' => 
         array (
@@ -26,13 +33,21 @@ class ComposerStaticInit82f603e69ebec3ca148eb97302455b46
     );
 
     public static $prefixDirsPsr4 = array (
-        'Urodoz\\Truncate\\' => 
+        'Symfony\\Polyfill\\Mbstring\\' => 
         array (
-            0 => __DIR__ . '/..' . '/urodoz/truncate-html/src',
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
         ),
         'Symfony\\Component\\Yaml\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/yaml',
+        ),
+        'Stringy\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/danielstjules/stringy/src',
+        ),
+        'NumberToWords\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kwn/number-to-words/src',
         ),
         'League\\Csv\\' => 
         array (
@@ -44,29 +59,11 @@ class ComposerStaticInit82f603e69ebec3ca148eb97302455b46
         ),
     );
 
-    public static $prefixesPsr0 = array (
-        'N' => 
-        array (
-            'Numbers' => 
-            array (
-                0 => __DIR__ . '/..' . '/pear/numbers_words',
-            ),
-        ),
-        'M' => 
-        array (
-            'Math_' => 
-            array (
-                0 => __DIR__ . '/..' . '/pear/math_biginteger',
-            ),
-        ),
-    );
-
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit82f603e69ebec3ca148eb97302455b46::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit82f603e69ebec3ca148eb97302455b46::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit82f603e69ebec3ca148eb97302455b46::$prefixesPsr0;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitbf1ada629ee0e1866e3a86bc30e98b89::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitbf1ada629ee0e1866e3a86bc30e98b89::$prefixDirsPsr4;
 
         }, null, ClassLoader::class);
     }

@@ -1,7 +1,7 @@
 <?php
 namespace Craft;
 
-use Urodoz\Truncate\Truncator;
+use Stringy\Stringy;
 
 class Helpers_StringService extends BaseApplicationComponent
 {
@@ -13,24 +13,18 @@ class Helpers_StringService extends BaseApplicationComponent
      *
      * @param string $value
      * @param number $length
-     * @param boolean $preserve
      * @param string $separator
+     * @param boolean $preserve
      *
      * @return string
      */
-    public function truncate($value, $length = 30, $preserve = true, $separator = '...')
+    public function truncate($value, $length = 30, $separator = '…', $preserve = true)
     {
-        $charset = craft()->templates->getTwig()->getCharset();
-
-        $options = [
-            'ellipsis' => $separator,
-            'break' => ' ',
-            'length_in_chars' => true,
-            'word_safe' => $preserve,
-            'charset' => $charset,
-        ];
-
-        return Truncator::truncate($value, $length, $options);
+        if ($preserve) {
+            return Stringy::create($value)->safeTruncate($length, $separator);
+        } else {
+            return Stringy::create($value)->truncate($length, $separator);
+        }
     }
 
     /**

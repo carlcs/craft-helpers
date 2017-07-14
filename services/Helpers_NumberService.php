@@ -1,8 +1,7 @@
 <?php
 namespace Craft;
 
-use PEAR;
-use Numbers_Words;
+use NumberToWords\NumberToWords;
 
 class Helpers_NumberService extends BaseApplicationComponent
 {
@@ -10,9 +9,9 @@ class Helpers_NumberService extends BaseApplicationComponent
     // =========================================================================
 
     /**
-     * @var \Numbers_Words
+     * @var \NumberToWords\NumberToWords
      */
-    protected $numbersWords;
+    protected $numberToWords;
 
     // Public Methods
     // =========================================================================
@@ -25,14 +24,16 @@ class Helpers_NumberService extends BaseApplicationComponent
      *
      * @return string
      */
-    public function numbersToWords($value, $locale = 'en_US')
+    public function numbersToWords($value, $locale = 'en')
     {
-        $numbersWords = $this->getNumbersWords();
-        $return = $numbersWords->toWords($value, $locale);
+        $numberToWords = $this->getNumberToWords();
+        $numberTransformer = $numberToWords->getNumberTransformer($locale);
 
-        if (PEAR::isError($return)) {
-            Craft::log('(Helpers) couldn’t convert “'.$value.'” to its word representation: '.$return->message);
-            return false;
+        try {
+            $return = $numberTransformer->toWords($value);
+        } catch (\Exception $e) {
+            HelpersPlugin::log('Couldn’t convert “'.$value.'” to its word representation. '.$e->getMessage(), LogLevel::Error);
+            return null;
         }
 
         return $return;
@@ -48,14 +49,22 @@ class Helpers_NumberService extends BaseApplicationComponent
      *
      * @return string The word representation
      */
-    function currencyToWords($value, $locale = 'en_US', $currency = '', $decPoint = null)
+    function currencyToWords($value, $locale = 'en', $currency = 'USD')
     {
-        $numbersWords = $this->getNumbersWords();
-        $return = $numbersWords->toCurrency($value, $locale, $currency, $decPoint);
+        $numberToWords = $this->getNumberToWords();
+        $currencyTransformer = $numberToWords->getCurrencyTransformer($locale);
 
-        if (PEAR::isError($return)) {
-            Craft::log('(Helpers) couldn’t convert “'.$value.'” to its word representation: '.$return->message);
-            return false;
+        try {
+            if (!is_numeric($value)) {
+                throw new \Exception('The value provided is not numeric.');
+            }
+
+            $value = $value * 100;
+
+            $return = $currencyTransformer->toWords($value, $currency);
+        } catch (\Exception $e) {
+            HelpersPlugin::log('Couldn’t convert “'.$value.'” to its word representation. '.$e->getMessage(), LogLevel::Error);
+            return null;
         }
 
         return $return;
@@ -223,17 +232,17 @@ class Helpers_NumberService extends BaseApplicationComponent
     // =========================================================================
 
     /**
-     * Returns our Numbers_Words instance.
+     * Returns NumberToWords instance.
      *
-     * @return \Numbers_Words
+     * @return \NumberToWords\NumberToWords
      */
-    protected function getNumbersWords()
+    protected function getNumberToWords()
     {
-        if (!$this->numbersWords) {
-            $this->numbersWords = new Numbers_Words;
+        if (!$this->numberToWords) {
+            $this->numberToWords = new NumberToWords;
         }
 
-        return $this->numbersWords;
+        return $this->numberToWords;
     }
 
     /**

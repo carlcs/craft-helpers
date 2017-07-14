@@ -2,25 +2,12 @@
   "name": "carlcs/craft-helpers",
   "description": "Helpers plugin for Craft CMS",
   "type": "craft-plugin",
-  "repositories": [
-    {
-      "type": "pear",
-      "url": "https://pear2.php.net"
-    },
-    {
-      "type": "vcs",
-      "url": "https://github.com/carlcs/truncateHTML"
-    }
-  ],
   "require": {
     "composer/installers": "~1.0",
     "php": ">=5.4.0",
-    "pear/numbers_words": "v0.18.1",
-    "carlcs/truncate-html": "^1.1.0",
-    "symfony/yaml": "^3.3",
-    "league/csv": "^8.0"
-  },
-  "config": {
-    "preferred-install": "dist"
+    "danielstjules/stringy": "^3.1",
+    "kwn/number-to-words": "^1.3",
+    "league/csv": "^8.2",
+    "symfony/yaml": "^3.3"
   }
 }
