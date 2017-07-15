@@ -47,6 +47,7 @@ class HelpersTwigExtension extends \Twig_Extension
     {
         return [
             new Twig_SimpleFilter('truncate', [craft()->helpers_string, 'truncate'], ['is_safe' => ['html']]),
+            new Twig_SimpleFilter('truncateHtml', [craft()->helpers_string, 'truncateHtml'], ['is_safe' => ['html']]),
             new Twig_SimpleFilter('stripWords', [craft()->helpers_string, 'stripWords'], ['is_safe' => ['html']]),
             new Twig_SimpleFilter('stripPunctuation', [craft()->helpers_string, 'stripPunctuation'], ['is_safe' => ['html']]),
             new Twig_SimpleFilter('htmlEntityDecode', [craft()->helpers_string, 'htmlEntityDecode'], ['is_safe' => ['html']]),

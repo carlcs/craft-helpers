@@ -2,6 +2,7 @@
 namespace Craft;
 
 use Stringy\Stringy;
+use Urodoz\Truncate\Truncator;
 
 class Helpers_StringService extends BaseApplicationComponent
 {
@@ -25,6 +26,28 @@ class Helpers_StringService extends BaseApplicationComponent
         } else {
             return Stringy::create($value)->truncate($length, $separator);
         }
+    }
+
+    /**
+     * Returns the input string cut off after a character limit is reached.
+     *
+     * @param string $value
+     * @param number $length
+     * @param string $separator
+     * @param boolean $preserve
+     *
+     * @return string
+     */
+    public function truncateHtml($value, $length = 30, $separator = '…', $preserve = true)
+    {
+        $charset = craft()->templates->getTwig()->getCharset();
+
+        return Truncator::truncate($value, $length, [
+            'ellipsis' => $separator,
+            'length_in_chars' => true,
+            'word_safe' => $preserve,
+            'charset' => $charset,
+        ]);
     }
 
     /**
