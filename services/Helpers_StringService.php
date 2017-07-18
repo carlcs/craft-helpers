@@ -102,39 +102,31 @@ class Helpers_StringService extends BaseApplicationComponent
      * Returns the input string stripped from all words of a given list of words.
      *
      * @param string $value
-     * @param array $wordlist
+     * @param array $list
      * @param boolean $ignoreCase
      *
      * @return string
      */
-    public function stripWords($value, $wordlist, $ignoreCase = true)
+    public function stripWords($value, $list, $ignoreCase = true)
     {
-        foreach ($wordlist as &$word) {
+        foreach ($list as &$word) {
             $word = '/\b'.preg_quote($word, '/').'\b/';
             $word .= $ignoreCase ? 'i' : '';
         }
 
-        return preg_replace($wordlist, '', $value);
+        return preg_replace($list, '', $value);
     }
 
     /**
      * Returns the input string stripped from all punctuation.
      *
      * @param string $value
-     * @param boolean $removeMultiSpaces
      *
      * @return string
      */
-    public function stripPunctuation($value, $removeMultiSpaces = false)
+    public function stripPunctuation($value)
     {
-        $value = preg_replace('/[^\w\s]/u', '', $value);
-
-        if ($removeMultiSpaces) {
-            $value = preg_replace('/\s+/', ' ', $value);
-            $value = trim($value);
-        }
-
-        return $value;
+        return preg_replace('/[^\w\s]/u', '', $value);
     }
 
     /**
