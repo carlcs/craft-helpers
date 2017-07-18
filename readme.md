@@ -115,7 +115,7 @@ Truncates a string to a given length.
 
 #### truncateHtml( length, suffix, preserve )
 
-A version of the `truncate` filter that is capable of handling HTML as an input string. `truncateHtml` closes HTML tags, if they’d be cut off by the truncation.
+A version of the `truncate` filter that is capable of handling HTML as an input string. `truncateHtml` closes HTML tags, if they’d be cut off by the truncation. Please note that its performance is worse than the normal `truncate` filter, so only use it when you need to.
 
 - **`length`** (default `30`) – The number of characters, beyond which the text should be truncated.
 - **`suffix`** (default `'…'`) – The string to be appended if truncating occurs.
@@ -131,7 +131,7 @@ A version of the `truncate` filter that is capable of handling HTML as an input 
 
 Generates a comma separated list from an array of strings, where the last two strings are joined with “and”.
 
-- **`and`** (default `', and '`) – The separator between the last two strings. The string is translatable using [translation files][2].
+- **`and`** (default `', and '`) – The separator between the last two strings (translatable using [translation files][2]).
 - **`separator`** (default `', '`) – The separator between the other strings.
 
 ```twig
