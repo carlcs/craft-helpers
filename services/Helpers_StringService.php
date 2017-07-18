@@ -51,6 +51,54 @@ class Helpers_StringService extends BaseApplicationComponent
     }
 
     /**
+     * Returns a comma separated list where the last two items are joined with “and”.
+     *
+     * @param array $items
+     * @param string|null $and
+     * @param string $separator
+     *
+     * @return string
+     */
+    public static function sentenceList($items, $and = null, $separator = ', ')
+    {
+        $and = $and ? Craft::t($and) : Craft::t(', and ');
+
+        if (count($items) > 1) {
+            $start = implode($separator, array_slice($items, null, -1));
+            return $start.$and.array_pop($items);
+        }
+
+        return array_pop($items);
+    }
+
+    /**
+     * Returns a trimmed string with the first letter of each word capitalized.
+     *
+     * @param string $value
+     * @param array $ignore
+     *
+     * @return string
+     */
+    public function titleize($value, $ignore = null)
+    {
+        $ignore = $ignore ?: craft()->config->get('titleizeIgnore', 'helpers');
+
+        return Stringy::create($value)->titleize($ignore);
+    }
+
+    /**
+     * Trims the string and replaces consecutive whitespace characters with a single space.
+     *
+     * @param string $value
+     *
+     * @return string
+     */
+    public function collapseWhitespace($value)
+    {
+        return Stringy::create($value)->collapseWhitespace();
+    }
+
+    /**
      * Returns the input string stripped from all words of a given list of words.
      *
      * @param string $value
