@@ -1,5 +1,19 @@
 [
   {
+    "version": "2.0.0",
+    "downloadUrl": "https://github.com/carlcs/craft-helpers/archive/v2.0.0.zip",
+    "date": "2017-07-18T12:00:00+01:00",
+    "notes": [
+      "[Added] Added `sentenceList`, `titleize` and `collapseWhitespace` filters.",
+      "[Improved] Improved the performance of the `truncate` filter by removing the ability to properly handle HTML.",
+      "[Improved] The old `truncate` filter is now renamed to `truncateHtml`.",
+      "[Improved] Changed the order of arguments taken by the `truncate` filter.",
+      "[Improved] The `truncate` filter’s `suffix` argument now defaults to `…` (UTF-8 ellipsis character).",
+      "[Improved] Removed `removeMultiSpaces` argument from the `stripPunctuation` filter.",
+      "[Improved] Removed the PEAR packages dependency in favor of a more actively maintained number-to-words package (used by `numbersToWords` and `currencyToWords` filters)."
+    ]
+  },
+  {
     "version": "1.4.0",
     "downloadUrl": "https://github.com/carlcs/craft-helpers/archive/v1.4.0.zip",
     "date": "2017-07-13T17:00:00+01:00",
