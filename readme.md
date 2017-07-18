@@ -99,25 +99,71 @@ Reads a file’s contents into a string. The plugin also provides an alias for t
 
 ## String Helpers
 
-#### truncate( length, preserve, separator )
+#### truncate( length, suffix, preserve )
 
-Generates a truncated version of a string by cutting it off after the limit is reached.
+Truncates a string to a given length.
 
-The filter uses a fork of the [truncateHTML][2] library by Albert Lacarta. It counts single characters, this makes the length of the returned string very predictable, even for short length settings or text in languages with very long words like German.
-
-It preserves whole words by default and is capable of closing HTML tags, in case the closing tag got cut off. It also makes sure to remove punctuation preceding the separator, for example you won't get a “!...” at the end.
-
-- **`length`** (default `30`) – The max. number of characters after a string gets cut off.
-- **`preserve`** (default `true`) – Makes the filter preserve whole words.
-- **`separator`** (default `'...'`) – The characters to be appended to the truncated string.
+- **`length`** (default `30`) – The number of characters, beyond which the text should be truncated.
+- **`suffix`** (default `'…'`) – The string to be appended if truncating occurs.
+- **`preserve`** (default `true`) – Ensures that the filter doesn’t split words.
 
 ```twig
-{{ 'This is some very long text and it is causing a lot of problems.'|truncate(25) }}
+{{ 'This is some very long text and it is causing a lot of problems.'|truncate(30) }}
 
-{# outputs "This is some very long text..." #}
+{# outputs "This is some very long text…" #}
 ```
 
-  [2]: https://github.com/carlcs/truncateHTML
+#### truncateHtml( length, suffix, preserve )
+
+A version of the `truncate` filter that is capable of handling HTML as an input string. `truncateHtml` closes HTML tags, if they’d be cut off by the truncation.
+
+- **`length`** (default `30`) – The number of characters, beyond which the text should be truncated.
+- **`suffix`** (default `'…'`) – The string to be appended if truncating occurs.
+- **`preserve`** (default `true`) – Ensures that the filter doesn’t split words.
+
+```twig
+{{ 'This is some <strong>very long text and it is causing a lot of problems</strong>.'|truncateHtml(30) }}
+
+{# outputs "This is some <strong>very long text and</strong>…" #}
+```
+
+#### sentenceList( and, separator )
+
+Generates a comma separated list from an array of strings, where the last two strings are joined with “and”.
+
+- **`and`** (default `', and '`) – The separator between the last two strings. The string is translatable using [translation files][2].
+- **`separator`** (default `', '`) – The separator between the other strings.
+
+```twig
+{% set names = ['Patrick', 'Clarisse', 'Caitlin', 'Danny', 'Loretta'] %}
+{{ names|sentenceList }}
+
+{# outputs "Patrick, Clarisse, Caitlin, Danny, and Loretta" #}
+```
+
+  [2]: https://craftcms.com/support/static-translations
+
+#### titleize( ignore )
+
+Returns a string with the first letter of each word capitalized.
+
+- **`ignore`** (default `['the', 'to', ...]`) – A list of words which should not be capitalized. The default list can be overridden with the `titleizeIgnore` config setting.
+
+```twig
+{{ 'i like to watch television'|titleize }}
+
+{# outputs "I Like to Watch Television" #}
+```
+
+#### collapseWhitespace
+
+Trims the string and replaces consecutive whitespace characters with a single space. This includes tabs and newline characters, as well as multibyte whitespace such as the thin space and ideographic space.
+
+```twig
+{{ '     where that  extra whitespace  might come from? '|collapseWhitespace }}
+
+{# outputs "where that extra whitespace might come from?" #}
+```
 
 #### stripWords( wordlist, ignoreCase )
 
@@ -136,8 +182,6 @@ Returns the input string stripped from all words of a given list of words.
 #### stripPunctuation
 
 Returns the input string stripped from all punctuation.
-
-- **`removeMultiSpaces`** (default `false`) – Controls whether multiple consecutive spaces should get stripped.
 
 ```twig
 {% set string = 'In theory it removes .,:;*# but not ßøü.' %}
@@ -321,12 +365,17 @@ You can override plugin defaults with a helpers.php config file, which you need 
 
 return [
     'basePath' => getenv('BASE_PATH') ?: $_SERVER['DOCUMENT_ROOT'],
+    'titleizeIgnore' => ['at', 'by', 'for', 'in', 'of', 'on', 'out', 'to', 'the'],
 ];
 ```
 
 #### basePath
 
 The `basePath` is used by the `inline` and file reading functions. The default setting uses the value of your `BASE_PATH` environment variable if you have that set, otherwise falls back your the web root. You can override it with something like, for example `CRAFT_CONFIG_PATH.'data/'`.
+
+#### titleizeIgnore
+
+List of words which should not be capitalized by the `titleize` filter.
 
 ## Requirements
 
