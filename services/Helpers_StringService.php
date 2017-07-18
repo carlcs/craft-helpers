@@ -72,7 +72,7 @@ class Helpers_StringService extends BaseApplicationComponent
     }
 
     /**
-     * Returns a trimmed string with the first letter of each word capitalized.
+     * Returns a string with the first letter of each word capitalized.
      *
      * @param string $value
      * @param array $ignore
