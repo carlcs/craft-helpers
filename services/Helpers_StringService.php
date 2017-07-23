@@ -22,9 +22,9 @@ class Helpers_StringService extends BaseApplicationComponent
     public function truncate($value, $length = 30, $separator = '…', $preserve = true)
     {
         if ($preserve) {
-            return Stringy::create($value)->safeTruncate($length, $separator);
+            return (string)Stringy::create($value)->safeTruncate($length, $separator);
         } else {
-            return Stringy::create($value)->truncate($length, $separator);
+            return (string)Stringy::create($value)->truncate($length, $separator);
         }
     }
 
@@ -83,7 +83,7 @@ class Helpers_StringService extends BaseApplicationComponent
     {
         $ignore = $ignore ?: craft()->config->get('titleizeIgnore', 'helpers');
 
-        return Stringy::create($value)->titleize($ignore);
+        return (string)Stringy::create($value)->titleize($ignore);
     }
 
     /**
@@ -95,7 +95,7 @@ class Helpers_StringService extends BaseApplicationComponent
      */
     public function collapseWhitespace($value)
     {
-        return Stringy::create($value)->collapseWhitespace();
+        return (string)Stringy::create($value)->collapseWhitespace();
     }
 
     /**
