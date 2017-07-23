@@ -51,6 +51,32 @@ class Helpers_StringService extends BaseApplicationComponent
     }
 
     /**
+     * Highlights given terms in a text.
+     *
+     * @param string $value
+     * @param string|array $terms
+     * @param string $highlightFormat
+     *
+     * @return string
+     */
+    public function highlight($value, $terms, $format = null)
+    {
+        if (!is_array($terms)) {
+            $terms = (array)$terms;
+        }
+
+        $format = $format ?: craft()->config->get('highlightFormat', 'helpers');
+
+        $prepareTerm = function($term) {
+            return preg_quote(trim($term));
+        };
+
+        $pattern = '('. implode('|', array_map($prepareTerm, $terms)) .')';
+
+        return (string)Stringy::create($value)->regexReplace($pattern, $highlightFormat, 'imsr');
+    }
+
+    /**
      * Returns a comma separated list where the last two items are joined with “and”.
      *
      * @param array $items

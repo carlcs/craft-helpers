@@ -48,6 +48,7 @@ class HelpersTwigExtension extends \Twig_Extension
         return [
             new Twig_SimpleFilter('truncate', [craft()->helpers_string, 'truncate'], ['is_safe' => ['html']]),
             new Twig_SimpleFilter('truncateHtml', [craft()->helpers_string, 'truncateHtml'], ['is_safe' => ['html']]),
+            new Twig_SimpleFilter('highlight', [craft()->helpers_string, 'highlight'], ['is_safe' => ['html']]),
             new Twig_SimpleFilter('sentenceList', [craft()->helpers_string, 'sentenceList'], ['is_safe' => ['html']]),
             new Twig_SimpleFilter('titleize', [craft()->helpers_string, 'titleize'], ['is_safe' => ['html']]),
             new Twig_SimpleFilter('collapseWhitespace', [craft()->helpers_string, 'collapseWhitespace'], ['is_safe' => ['html']]),
