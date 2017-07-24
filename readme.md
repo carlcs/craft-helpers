@@ -127,6 +127,20 @@ A version of the `truncate` filter that is capable of handling HTML as an input 
 {# outputs "This is some <strong>very long text and</strong>…" #}
 ```
 
+#### highlight( terms, format )
+
+Highlights given terms in a text.
+
+- **`terms`** (required) – A term or an array of terms that will be searched.
+- **`format`** (default `'<mark>\1</mark>'`) – The replacement string with a backreference to the found term. The default string can be overridden with the `highlightFormat` config setting.
+
+```twig
+{% set terms = 'we craf'|split(' ') %}
+{{ 'We just installed Craft!'|highlight(terms) }}
+
+{# outputs "<mark>We</mark> just installed <mark>Craf</mark>t!" #}
+```
+
 #### sentenceList( and, separator )
 
 Generates a comma separated list from an array of strings, where the last two strings are joined with “and”.
@@ -365,6 +379,7 @@ You can override plugin defaults with a helpers.php config file, which you need 
 
 return [
     'basePath' => getenv('BASE_PATH') ?: $_SERVER['DOCUMENT_ROOT'],
+    'highlightFormat' => '<mark>\1</mark>',
     'titleizeIgnore' => ['at', 'by', 'for', 'in', 'of', 'on', 'out', 'to', 'the'],
 ];
 ```
@@ -372,6 +387,10 @@ return [
 #### basePath
 
 The `basePath` is used by the `inline` and file reading functions. The default setting uses the value of your `BASE_PATH` environment variable if you have that set, otherwise falls back your the web root. You can override it with something like, for example `CRAFT_CONFIG_PATH.'data/'`.
+
+#### highlightFormat
+
+A setting for the `highlight` filter, which defines how matched terms are replaced. The term itself is available from the `\1` backreference.
 
 #### titleizeIgnore
 
