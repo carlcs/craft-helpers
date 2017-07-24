@@ -73,7 +73,7 @@ class Helpers_StringService extends BaseApplicationComponent
 
         $pattern = '('. implode('|', array_map($prepareTerm, $terms)) .')';
 
-        return (string)Stringy::create($value)->regexReplace($pattern, $highlightFormat, 'imsr');
+        return (string)Stringy::create($value)->regexReplace($pattern, $format, 'imsr');
     }
 
     /**
